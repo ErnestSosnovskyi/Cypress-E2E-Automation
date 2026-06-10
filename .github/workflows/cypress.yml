@@ -1,0 +1,22 @@
+name: Cypress E2E Automation
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Downloading the repository code
+        uses: actions/checkout@v4
+
+      - name: Running Cypress tests
+        uses: cypress-io/github-action@v6
+        with:
+          config-file: cypress.telnyx.config.js
+          record: true
+        env:
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
