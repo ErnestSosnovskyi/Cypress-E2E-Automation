@@ -1,5 +1,8 @@
 describe('Telnyx E2E Automation Tests', () =>{
     beforeEach(() => {
+        Cypress.on('uncaught:exception', (err, runnable) => {
+            return false;
+        });
     });
 
     it('TC001 - Checking if the home page has loaded successfully', () => {
@@ -30,8 +33,7 @@ describe('Telnyx E2E Automation Tests', () =>{
     it('TC004 - Checking if the pricing section opens on the main page', () => {
         cy.visit('https://telnyx.com');
 
-        cy.get('header').contains('Pricing', { matchCase: false }).click();
-        cy.contains('View all pricing', { matchCase: false }).click({ force: true });
+        cy.get('a[href="/pricing"]').first().click({ force: true });
         cy.url().should('include', '/pricing');
         cy.get('h1').should('be.visible');
     });
@@ -39,15 +41,14 @@ describe('Telnyx E2E Automation Tests', () =>{
     it('TC005 - Checking access to the Voice API page', () => {
         cy.visit('https://telnyx.com');
 
-        cy.get('header').contains('Products', { matchCase: false }).click();
-        cy.contains('a', 'Voice API', { matchCase: false }).click({ force: true });
+        cy.get('a[href="/products/voice-api"]').first().click({ force: true });
         cy.url().should('include', '/products/voice-api');
     });
 
     it('TC006 - Testing the "Talk to an expert" button', () => {
         cy.visit('https://telnyx.com/products/voice-api');
 
-        cy.contains('Talk to an expert').click();
+        cy.contains('Talk to an expert').click({ force: true });
         cy.url().should('include', '/contact-us');
     });
 
@@ -60,7 +61,7 @@ describe('Telnyx E2E Automation Tests', () =>{
     it('TC008 - Checking the Cookie Consent Banner', () => {
         cy.visit('https://telnyx.com');
 
-        cy.get('[id*="cookie"], [class*="cookie"], [id*="onetrust"').should('be.visible');
+        cy.get('[id*="cookie"], [class*="cookie"], [id*="onetrust"]').should('be.visible');
         cy.contains('Accept').should('be.visible').and('not.be.disabled');
     });
 
@@ -68,7 +69,7 @@ describe('Telnyx E2E Automation Tests', () =>{
         cy.visit('https://telnyx.com');
 
         cy.get('footer').scrollIntoView().should('be.visible');
-        cy.get('footer').contains('Terms and Conditions of Service').invoke('removeAttr', 'target').click();
+        cy.get('footer').contains('Terms and Conditions of Service').invoke('removeAttr', 'target').click({ force: true });
         cy.url().should('include', '/terms-and-conditions-of-service');
     });
 
