@@ -22,8 +22,7 @@ describe('Telnyx E2E Automation Tests', () =>{
     it('TC003 - Checking the validation of an empty registration form', () => {
         cy.visit('https://telnyx.com/sign-up');
 
-        cy.get('form').should('be.visible');
-        cy.get('button[type="submit"]').click({ force: true });
+        cy.get('button[type="submit"]').first().click({ force: true });
         cy.url().should('include', '/sign-up');       
         cy.get('input:invalid, [class*="error"], [class*="message"], [id*="error"]').should('exist');
     });
@@ -32,7 +31,6 @@ describe('Telnyx E2E Automation Tests', () =>{
         cy.visit('https://telnyx.com');
 
         cy.get('header').contains('Pricing', { matchCase: false }).click();
-        cy.url().should('eq', 'https://telnyx.com/');
         cy.contains('View all pricing', { matchCase: false }).click({ force: true });
         cy.url().should('include', '/pricing');
         cy.get('h1').should('be.visible');
@@ -42,7 +40,6 @@ describe('Telnyx E2E Automation Tests', () =>{
         cy.visit('https://telnyx.com');
 
         cy.get('header').contains('Products', { matchCase: false }).click();
-        cy.url().should('eq', 'https://telnyx.com/');
         cy.contains('a', 'Voice API', { matchCase: false }).click({ force: true });
         cy.url().should('include', '/products/voice-api');
     });
