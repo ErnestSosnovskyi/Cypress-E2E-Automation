@@ -1,7 +1,5 @@
 # Telnyx Cypress E2E Automation
 
----
-
 This repository contains automated End-to-End (E2E) tests for [telnyx.com](https://telnyx.com), built with Cypress. The framework implements the Page Object Model (POM) design pattern, uses fixtures for test data management, and is integrated with GitHub Actions for CI/CD reporting.
 
 ## Prerequisites
