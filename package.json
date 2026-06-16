@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
+    "test:e2e": "cypress run --config-file cypress.telnyx.config.js",
+    "test:dashboard": "cypress run --config-file cypress.telnyx.config.js --record"
   },
   "keywords": [],
   "author": "",

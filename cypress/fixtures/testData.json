@@ -1,0 +1,14 @@
+{
+  "urls": {
+    "signUp": "/sign-up",
+    "pricing": "/pricing",
+    "voiceApi": "/products/voice-api",
+    "contactUs": "/contact-us",
+    "terms": "/terms-and-conditions-of-service",
+    "portal": "portal.telnyx.com"
+  },
+  "credentials": {
+    "email": "test-intern@example.com",
+    "password": "SecurePassword123!"
+  }
+}
